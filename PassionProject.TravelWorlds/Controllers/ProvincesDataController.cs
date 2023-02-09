@@ -18,14 +18,24 @@ namespace PassionProject.TravelWorlds.Controllers
 
         // GET: api/ProvincesData/ListProvinces
         [HttpGet]
-        public IQueryable<Province> ListProvinces()
+        public IEnumerable<ProvinceDto> ListProvinces()
         {
-            return db.Provinces;
+            List<Province> Provinces = db.Provinces.ToList();
+            List<ProvinceDto> ProvinceDtos = new List<ProvinceDto>();
+
+            Provinces.ForEach(a => ProvinceDtos.Add(new ProvinceDto(){
+                ProvinceID = a.ProvinceID,
+                ProvinceName = a.ProvinceName,
+                CountryName = a.Countries.CountryName
+
+            }));
+
+            return ProvinceDtos;
         }
 
-        // GET: api/ProvincesData/FindProvinces/5
-        [HttpGet]
+        // GET: api/ProvincesData/FindProvince/5
         [ResponseType(typeof(Province))]
+        [HttpGet]
         public IHttpActionResult FindProvince(int id)
         {
             Province province = db.Provinces.Find(id);
@@ -37,7 +47,7 @@ namespace PassionProject.TravelWorlds.Controllers
             return Ok(province);
         }
 
-        // PUT: api/ProvincesData/UpdateProvinces/5
+        // PUT: api/ProvincesData/UpdateProvince/5
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateProvince(int id, Province province)
@@ -73,7 +83,7 @@ namespace PassionProject.TravelWorlds.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/ProvincesData/AddProvinces
+        // POST: api/ProvincesData/AddProvince
         [ResponseType(typeof(Province))]
         [HttpPost]
         public IHttpActionResult AddProvince(Province province)
@@ -89,7 +99,7 @@ namespace PassionProject.TravelWorlds.Controllers
             return CreatedAtRoute("DefaultApi", new { id = province.ProvinceID }, province);
         }
 
-        // DELETE: api/ProvincesData/DeleteProvinces/5
+        // DELETE: api/ProvincesData/DeleteProvince/5
         [ResponseType(typeof(Province))]
         [HttpPost]
         public IHttpActionResult DeleteProvince(int id)

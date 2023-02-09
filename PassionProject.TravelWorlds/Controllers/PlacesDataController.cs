@@ -18,7 +18,7 @@ namespace PassionProject.TravelWorlds.Controllers
 
         // GET: api/PlacesData/ListPlaces
         [HttpGet]
-        public IQueryable<Place> ListPlaces()
+        public IEnumerable<Place> ListPlaces()
         {
             return db.Places;
         }
