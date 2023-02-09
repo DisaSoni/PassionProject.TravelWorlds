@@ -18,9 +18,22 @@ namespace PassionProject.TravelWorlds.Controllers
 
         // GET: api/PlacesData/ListPlaces
         [HttpGet]
-        public IEnumerable<Place> ListPlaces()
+        public IEnumerable<PlaceDto> ListPlaces()
         {
-            return db.Places;
+
+            List<Place> Places = db.Places.ToList();
+            List<PlaceDto> PlaceDtos = new List<PlaceDto>();
+
+            Places.ForEach(a => PlaceDtos.Add(new PlaceDto(){ 
+
+                PlaceID = a.PlaceID,
+                PlaceName =a.PlaceName,
+                PlaceReviews = a.PlaceReviews,
+                ProvinceName = a.Province.ProvinceName
+            }
+                ));
+
+            return PlaceDtos;
         }
 
         // GET: api/PlacesData/FindPlaces/5
