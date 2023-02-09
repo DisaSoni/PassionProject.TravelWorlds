@@ -184,6 +184,7 @@
     <Compile Include="Controllers\CountriesDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlacesDataController.cs" />
     <Compile Include="Controllers\ProvincesDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

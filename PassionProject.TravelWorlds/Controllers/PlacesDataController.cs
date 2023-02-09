@@ -12,47 +12,47 @@ using PassionProject.TravelWorlds.Models;
 
 namespace PassionProject.TravelWorlds.Controllers
 {
-    public class ProvincesDataController : ApiController
+    public class PlacesDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/ProvincesData/ListProvinces
+        // GET: api/PlacesData/ListPlaces
         [HttpGet]
-        public IQueryable<Province> ListProvinces()
+        public IQueryable<Place> ListPlaces()
         {
-            return db.Provinces;
+            return db.Places;
         }
 
-        // GET: api/ProvincesData/FindProvinces/5
+        // GET: api/PlacesData/FindPlaces/5
+        [ResponseType(typeof(Place))]
         [HttpGet]
-        [ResponseType(typeof(Province))]
-        public IHttpActionResult FindProvince(int id)
+        public IHttpActionResult FindPlace(int id)
         {
-            Province province = db.Provinces.Find(id);
-            if (province == null)
+            Place place = db.Places.Find(id);
+            if (place == null)
             {
                 return NotFound();
             }
 
-            return Ok(province);
+            return Ok(place);
         }
 
-        // PUT: api/ProvincesData/UpdateProvinces/5
+        // PUT: api/PlacesData/UpdatePlaces/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        public IHttpActionResult UpdateProvince(int id, Province province)
+        public IHttpActionResult UpdatePlace(int id, Place place)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != province.ProvinceID)
+            if (id != place.PlaceID)
             {
                 return BadRequest();
             }
 
-            db.Entry(province).State = EntityState.Modified;
+            db.Entry(place).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace PassionProject.TravelWorlds.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProvinceExists(id))
+                if (!PlaceExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +73,37 @@ namespace PassionProject.TravelWorlds.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/ProvincesData/AddProvinces
-        [ResponseType(typeof(Province))]
+        // POST: api/PlacesData/AddPlaces
+        [ResponseType(typeof(Place))]
         [HttpPost]
-        public IHttpActionResult AddProvince(Province province)
+        public IHttpActionResult PostPlace(Place place)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Provinces.Add(province);
+            db.Places.Add(place);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = province.ProvinceID }, province);
+            return CreatedAtRoute("DefaultApi", new { id = place.PlaceID }, place);
         }
 
-        // DELETE: api/ProvincesData/DeleteProvinces/5
-        [ResponseType(typeof(Province))]
+        // DELETE: api/PlacesData/DeletePlaces/5
+        [ResponseType(typeof(Place))]
         [HttpPost]
-        public IHttpActionResult DeleteProvince(int id)
+        public IHttpActionResult DeletePlace(int id)
         {
-            Province province = db.Provinces.Find(id);
-            if (province == null)
+            Place place = db.Places.Find(id);
+            if (place == null)
             {
                 return NotFound();
             }
 
-            db.Provinces.Remove(province);
+            db.Places.Remove(place);
             db.SaveChanges();
 
-            return Ok(province);
+            return Ok(place);
         }
 
         protected override void Dispose(bool disposing)
@@ -115,9 +115,9 @@ namespace PassionProject.TravelWorlds.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProvinceExists(int id)
+        private bool PlaceExists(int id)
         {
-            return db.Provinces.Count(e => e.ProvinceID == id) > 0;
+            return db.Places.Count(e => e.PlaceID == id) > 0;
         }
     }
 }
