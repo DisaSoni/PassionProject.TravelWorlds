@@ -36,21 +36,30 @@ namespace PassionProject.TravelWorlds.Controllers
             return PlaceDtos;
         }
 
-        // GET: api/PlacesData/FindPlaces/5
+        // GET: api/PlacesData/FindPlace/5
         [ResponseType(typeof(Place))]
         [HttpGet]
         public IHttpActionResult FindPlace(int id)
         {
-            Place place = db.Places.Find(id);
-            if (place == null)
+            Place Place = db.Places.Find(id);
+            PlaceDto PlaceDto = new PlaceDto()
+            {
+                PlaceID = Place.PlaceID,
+                PlaceName = Place.PlaceName,
+                PlaceReviews = Place.PlaceReviews,
+                ProvinceName = Place.Province.ProvinceName
+            };
+
+
+            if (Place == null)
             {
                 return NotFound();
             }
 
-            return Ok(place);
+            return Ok(PlaceDto);
         }
 
-        // PUT: api/PlacesData/UpdatePlaces/5
+        // PUT: api/PlacesData/UpdatePlace/5
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdatePlace(int id, Place place)
@@ -86,7 +95,7 @@ namespace PassionProject.TravelWorlds.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/PlacesData/AddPlaces
+        // POST: api/PlacesData/AddPlace
         [ResponseType(typeof(Place))]
         [HttpPost]
         public IHttpActionResult PostPlace(Place place)
@@ -102,7 +111,7 @@ namespace PassionProject.TravelWorlds.Controllers
             return CreatedAtRoute("DefaultApi", new { id = place.PlaceID }, place);
         }
 
-        // DELETE: api/PlacesData/DeletePlaces/5
+        // DELETE: api/PlacesData/DeletePlace/5
         [ResponseType(typeof(Place))]
         [HttpPost]
         public IHttpActionResult DeletePlace(int id)
