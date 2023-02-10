@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using PassionProject.TravelWorlds.Models;
+using System.Diagnostics;
 
 namespace PassionProject.TravelWorlds.Controllers
 {
@@ -38,13 +39,20 @@ namespace PassionProject.TravelWorlds.Controllers
         [HttpGet]
         public IHttpActionResult FindProvince(int id)
         {
-            Province province = db.Provinces.Find(id);
-            if (province == null)
+            Province Province = db.Provinces.Find(id);
+            ProvinceDto ProvinceDto = new ProvinceDto()
+            {
+                ProvinceID = Province.ProvinceID,
+                ProvinceName = Province.ProvinceName,
+                CountryName = Province.Countries.CountryName
+
+            };
+            if (Province == null)
             {
                 return NotFound();
             }
 
-            return Ok(province);
+            return Ok(ProvinceDto);
         }
 
         // PUT: api/ProvincesData/UpdateProvince/5
