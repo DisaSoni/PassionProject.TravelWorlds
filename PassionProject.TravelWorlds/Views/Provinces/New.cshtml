@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Province</h2>
+<form action="/Provinces/Create" method="POST">
+    <div>
+        <label>Province Name:</label> <input type="text" name="ProvinceName" />
+    </div>
+    <div>
+        <label>Country  Id:</label> <input type="number" name="CountryID" />
+    </div>
+    <div>
+        <input type="submit" value="Add Province" />
+    </div>
+</form>

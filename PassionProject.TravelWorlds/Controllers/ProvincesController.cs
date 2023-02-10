@@ -6,23 +6,31 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
 using PassionProject.TravelWorlds.Models;
+using System.Web.Script.Serialization;
 
 namespace PassionProject.TravelWorlds.Controllers
 {
     public class ProvincesController : Controller
     {
+        private static readonly HttpClient client;
+        JavaScriptSerializer jss = new JavaScriptSerializer();
+
+        static ProvincesController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44309/api/ProvincesData/");
+        }
         // GET: Provinces/List
         public ActionResult List()
         {
             //objective: communication with our provinces data api to retriveve a list province
-            //curl https://localhost:44309/api/ProvincesData/ListProvinces
+            //curl https://localhost:44309/api/ProvincesData/https://localhost:44309/api/ProvincesData/ListProvinces
 
-            HttpClient client = new HttpClient() { };
-            string Url = "https://localhost:44309/api/ProvincesData/ListProvinces";
+            string Url = "ListProvinces";
             HttpResponseMessage response = client.GetAsync(Url).Result;
 
-            Debug.WriteLine("The response code is");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("The response code is");
+            //Debug.WriteLine(response.StatusCode);
 
             IEnumerable<ProvinceDto> provinces = response.Content.ReadAsAsync<IEnumerable<ProvinceDto>>().Result;
             Debug.WriteLine("Number of province received");
@@ -36,41 +44,58 @@ namespace PassionProject.TravelWorlds.Controllers
         {
             //objective: communication with our provinces data api to retriveve a list of Province
             //curl https://localhost:44309/api/ProvincesData/findProvince{id}
-
-            HttpClient client = new HttpClient() { };
-            string Url = "https://localhost:44309/api/ProvincesData/findProvince/"+id;
+    
+            string Url = "findProvince/"+id;
             HttpResponseMessage response = client.GetAsync(Url).Result;
 
-            Debug.WriteLine("The response code is");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("The response code is");
+            //Debug.WriteLine(response.StatusCode);
 
             ProvinceDto selectedprovinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
-            Debug.WriteLine("Number of Province received");
-            Debug.WriteLine(selectedprovinces.ProvinceName);
+            //Debug.WriteLine("Number of Province received");
+            //Debug.WriteLine(selectedprovinces.ProvinceName);
 
             return View(selectedprovinces);
         }
-
-        // GET: Provinces/Create
-        public ActionResult Create()
+        
+        public ActionResult Error()
+        {
+            return View();
+        }
+        // GET: Provinces/New
+        public ActionResult New()
         {
             return View();
         }
 
         // POST: Provinces/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Province province)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            Debug.WriteLine("The jsonpayload:");
+            //Debug.WriteLine(province.ProvinceName);
+            //Objective: add a new province in our system
+            //curl -H "Content-Type:application/json"-d @provinces.json https://localhost:44309/api/ProvincesData/AddProvince
 
-                return RedirectToAction("Index");
-            }
-            catch
+            string Url = "AddProvince";
+
+            string jsonpayload = jss.Serialize(province);
+
+            Debug.WriteLine(jsonpayload);
+
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(Url, content).Result;
+            if(response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
             }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+            
         }
 
         // GET: Provinces/Edit/5
