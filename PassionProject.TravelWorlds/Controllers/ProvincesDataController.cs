@@ -19,6 +19,7 @@ namespace PassionProject.TravelWorlds.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/ProvincesData/ListProvinces
+        // curl https://localhost:44309/api/ProvincesData/ListProvinces
         [HttpGet]
         public IEnumerable<ProvinceDto> ListProvinces()
         {
@@ -36,6 +37,7 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // GET: api/ProvincesData/FindProvince/5
+        //curl “https://localhost:44309/api/ProvincesData/FindProvince/8”
         [ResponseType(typeof(Province))]
         [HttpGet]
         public IHttpActionResult FindProvince(int id)
@@ -56,7 +58,8 @@ namespace PassionProject.TravelWorlds.Controllers
             return Ok(ProvinceDto);
         }
 
-        // PUT: api/ProvincesData/UpdateProvince/5
+        // POST: api/ProvincesData/UpdateProvince/5
+        // curl -d @provinces.json -H "Content-type:application/json" https://localhost:44309/api/ProvincesData/UpdateProvince/8  
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateProvince(int id, Province province)
@@ -100,6 +103,7 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // POST: api/ProvincesData/AddProvince
+        //curl -d @province.json -H “Content-type:application/json” https://localhost:44309/api/ProvincesData/AddProvince
         [ResponseType(typeof(Province))]
         [HttpPost]
         public IHttpActionResult AddProvince(Province province)
@@ -116,6 +120,7 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // DELETE: api/ProvincesData/DeleteProvince/5
+        //curl -d "" https://localhost:44309/api/ProvincesData/DeleteProvince/{id}
         [ResponseType(typeof(Province))]
         [HttpPost]
         public IHttpActionResult DeleteProvince(int id)

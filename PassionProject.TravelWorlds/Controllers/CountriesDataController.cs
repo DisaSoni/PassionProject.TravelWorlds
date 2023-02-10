@@ -17,6 +17,7 @@ namespace PassionProject.TravelWorlds.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/CountriesData/ListCountries
+        //curl https://localhost:44309/api/CountriesData/ListCountries
         [HttpGet]
         public IEnumerable<Countries> ListCountries()
         {
@@ -35,6 +36,7 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // GET: api/CountriesData/FindCountries/5
+        // curl "https://localhost:44309/api/CountriesData/FindCountries/11"
         [HttpGet]
         [ResponseType(typeof(Countries))]
         public IHttpActionResult FindCountries(int id)
@@ -55,6 +57,7 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // POST: api/CountriesData/UpdateCountries/5
+        //curl -d @countries.json -H "Content-type:application/json" https://localhost:44309/api/CountriesData/UpdateCountries/11
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateCountries(int id, Countries countries)
@@ -91,7 +94,8 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // POST: api/CountriesData/AddCountries
-        [ResponseType(typeof(Countries))]
+        //curl -d @countries.json -H "Content-type:application/json" https://localhost:44309/api/CountriesData/AddCountries
+                [ResponseType(typeof(Countries))]
         [HttpPost]
         public IHttpActionResult AddCountries(Countries countries)
         {
@@ -107,6 +111,7 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // POST: api/CountriesData/DeleteCountries/5
+        //curl -d "" https://localhost:44309/api/CountriesData/DeleteCountries/12
         [ResponseType(typeof(Countries))]
         [HttpPost]
         public IHttpActionResult DeleteCountries(int id)

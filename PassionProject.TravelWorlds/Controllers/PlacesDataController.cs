@@ -17,6 +17,7 @@ namespace PassionProject.TravelWorlds.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/PlacesData/ListPlaces
+        //curl https://localhost:44309/api/PlacesData/ListPlaces
         [HttpGet]
         public IEnumerable<PlaceDto> ListPlaces()
         {
@@ -37,6 +38,7 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // GET: api/PlacesData/FindPlace/5
+        //curl "https://localhost:44309/api/PlacesData/FindPlace/8"
         [ResponseType(typeof(Place))]
         [HttpGet]
         public IHttpActionResult FindPlace(int id)
@@ -59,7 +61,9 @@ namespace PassionProject.TravelWorlds.Controllers
             return Ok(PlaceDto);
         }
 
-        // PUT: api/PlacesData/UpdatePlace/5
+        // POST: api/PlacesData/UpdatePlace/5
+        //curl -d @place.json -H "Content-type:application/json" https://localhost:44309/api/PlacesData/UpdatePlace/8
+
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdatePlace(int id, Place place)
@@ -96,9 +100,11 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // POST: api/PlacesData/AddPlace
+        //curl -d @place.json -H "Content-type:application/json" https://localhost:44309/api/PlacesData/addplace
+
         [ResponseType(typeof(Place))]
         [HttpPost]
-        public IHttpActionResult PostPlace(Place place)
+        public IHttpActionResult AddPlace(Place place)
         {
             if (!ModelState.IsValid)
             {
@@ -112,6 +118,7 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // DELETE: api/PlacesData/DeletePlace/5
+        //curl -d "" https://localhost:44309/api/PlacesData/deletePlace/9
         [ResponseType(typeof(Place))]
         [HttpPost]
         public IHttpActionResult DeletePlace(int id)
