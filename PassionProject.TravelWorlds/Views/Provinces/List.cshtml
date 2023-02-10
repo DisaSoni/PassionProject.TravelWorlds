@@ -1,11 +1,14 @@
-﻿@model IEnumerable<PassionProject.TravelWorlds.Models.Province>
+﻿@model IEnumerable<PassionProject.TravelWorlds.Models.ProvinceDto>
 
 @{
     ViewBag.Title = "List";
 }
 
 <h2>List</h2>
-@foreach(var province in Model)
-            {
-<div>@province.ProvinceName</div>
-            }
+@foreach (var province in Model)
+{
+    <h2><a href="/Provinces/Details/@province.ProvinceID"> Province Name: @province.ProvinceName </a></h2>
+    <div> Country Name: @province.CountryName</div>
+
+
+}

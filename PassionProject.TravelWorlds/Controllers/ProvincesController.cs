@@ -14,7 +14,7 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Provinces/List
         public ActionResult List()
         {
-            //objective: communication with our provinces data api to retriveve a list of animals
+            //objective: communication with our provinces data api to retriveve a list province
             //curl https://localhost:44309/api/ProvincesData/ListProvinces
 
             HttpClient client = new HttpClient() { };
@@ -24,8 +24,8 @@ namespace PassionProject.TravelWorlds.Controllers
             Debug.WriteLine("The response code is");
             Debug.WriteLine(response.StatusCode);
 
-            IEnumerable<Province> provinces = response.Content.ReadAsAsync<IEnumerable<Province>>().Result;
-            Debug.WriteLine("Number of animals received");
+            IEnumerable<ProvinceDto> provinces = response.Content.ReadAsAsync<IEnumerable<ProvinceDto>>().Result;
+            Debug.WriteLine("Number of province received");
             Debug.WriteLine(provinces.Count());
 
             return View(provinces);
@@ -34,7 +34,21 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Provinces/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            //objective: communication with our provinces data api to retriveve a list of Province
+            //curl https://localhost:44309/api/ProvincesData/findProvince{id}
+
+            HttpClient client = new HttpClient() { };
+            string Url = "https://localhost:44309/api/ProvincesData/findProvince/"+id;
+            HttpResponseMessage response = client.GetAsync(Url).Result;
+
+            Debug.WriteLine("The response code is");
+            Debug.WriteLine(response.StatusCode);
+
+            ProvinceDto selectedprovinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
+            Debug.WriteLine("Number of Province received");
+            Debug.WriteLine(selectedprovinces.ProvinceName);
+
+            return View(selectedprovinces);
         }
 
         // GET: Provinces/Create
