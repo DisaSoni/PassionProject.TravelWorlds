@@ -40,12 +40,18 @@ namespace PassionProject.TravelWorlds.Controllers
         public IHttpActionResult FindCountries(int id)
         {
             Countries countries = db.Countries.Find(id);
+            CountriesDto CountriesDto = new CountriesDto()
+            {
+                CountryID = countries.CountryID,
+                CountryName = countries.CountryName,
+            };
+
             if (countries == null)
             {
                 return NotFound();
             }
 
-            return Ok(countries);
+            return Ok(CountriesDto);
         }
 
         // POST: api/CountriesData/UpdateCountries/5
