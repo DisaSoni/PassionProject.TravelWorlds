@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using PassionProject.TravelWorlds.Models;
 using System.Diagnostics;
 
+
 namespace PassionProject.TravelWorlds.Controllers
 {
     public class ProvincesDataController : ApiController
@@ -60,13 +61,19 @@ namespace PassionProject.TravelWorlds.Controllers
         [HttpPost]
         public IHttpActionResult UpdateProvince(int id, Province province)
         {
+            Debug.WriteLine("I have reached the update Provinces method!");
             if (!ModelState.IsValid)
             {
+                Debug.WriteLine("Model state is not valid");
                 return BadRequest(ModelState);
             }
 
             if (id != province.ProvinceID)
             {
+                Debug.WriteLine("ID mismatch!");
+                Debug.WriteLine("GET parameter" + id);
+                Debug.WriteLine("POST parameter" + province.ProvinceID);
+
                 return BadRequest();
             }
 
@@ -80,6 +87,7 @@ namespace PassionProject.TravelWorlds.Controllers
             {
                 if (!ProvinceExists(id))
                 {
+                    Debug.WriteLine("Animal not found");
                     return NotFound();
                 }
                 else
@@ -87,7 +95,7 @@ namespace PassionProject.TravelWorlds.Controllers
                     throw;
                 }
             }
-
+            Debug.WriteLine("non of triggered");
             return StatusCode(HttpStatusCode.NoContent);
         }
 

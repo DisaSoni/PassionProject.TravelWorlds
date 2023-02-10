@@ -1,0 +1,11 @@
+﻿@model IEnumerable<PassionProject.TravelWorlds.Models.Province>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach(var province in Model)
+            {
+<div>@province.ProvinceName</div>
+            }
