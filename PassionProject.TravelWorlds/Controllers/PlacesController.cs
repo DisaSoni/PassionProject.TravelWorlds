@@ -16,6 +16,7 @@ namespace PassionProject.TravelWorlds.Controllers
         static PlacesController()
         {
             client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44309/api/PlacesData/");
         }
         // GET: Places/List
         public ActionResult List()
@@ -23,7 +24,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our Places data api to retrive a list of places.
             //curl https://localhost:44309/api/PlacesData/ListPlaces
 
-            string url = "https://localhost:44309/api/PlacesData/ListPlaces";
+            string url = "ListPlaces";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response is ");
@@ -45,7 +46,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our Places data api to retrive a one place.
             //curl https://localhost:44309/api/PlacesData/FindPlace/{id}
 
-            string url = "https://localhost:44309/api/PlacesData/FindPlace/"+id;
+            string url = "FindPlace/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response is ");

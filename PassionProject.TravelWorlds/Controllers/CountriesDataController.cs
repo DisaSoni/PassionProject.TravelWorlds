@@ -16,12 +16,7 @@ namespace PassionProject.TravelWorlds.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
-        /// <summary>
-        /// Returns all the countries in the system 
-        /// </summary>
-        /// <returns>all countries in system </returns>
-        ///<example>GET: api/CountriesData/ListCountries
+        // GET: api/CountriesData/ListCountries
         //curl https://localhost:44309/api/CountriesData/ListCountries
         [HttpGet]
         public IEnumerable<Countries> ListCountries()
@@ -40,13 +35,8 @@ namespace PassionProject.TravelWorlds.Controllers
             return db.Countries;
         }
 
-        /// <summary>
-        /// Gather all countries data with id
-        /// </summary>
-        /// <param name="id"> CountryID</param>
-        //<example> GET: api/CountriesData/FindCountries/5 </example>
+        // GET: api/CountriesData/FindCountries/5
         // curl "https://localhost:44309/api/CountriesData/FindCountries/11"
-        //
         [HttpGet]
         [ResponseType(typeof(Countries))]
         public IHttpActionResult FindCountries(int id)
