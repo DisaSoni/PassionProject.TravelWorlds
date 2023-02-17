@@ -63,7 +63,7 @@ namespace PassionProject.TravelWorlds.Controllers
 
         // POST: api/PlacesData/UpdatePlace/5
         //curl -d @place.json -H "Content-type:application/json" https://localhost:44309/api/PlacesData/UpdatePlace/8
-
+        //
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdatePlace(int id, Place place)

@@ -46,6 +46,7 @@ namespace PassionProject.TravelWorlds.Controllers
         /// <param name="id"> CountryID</param>
         //<example> GET: api/CountriesData/FindCountries/5 </example>
         // curl "https://localhost:44309/api/CountriesData/FindCountries/11"
+        //
         [HttpGet]
         [ResponseType(typeof(Countries))]
         public IHttpActionResult FindCountries(int id)
