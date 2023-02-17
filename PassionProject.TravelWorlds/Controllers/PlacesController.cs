@@ -27,12 +27,12 @@ namespace PassionProject.TravelWorlds.Controllers
             string url = "ListPlaces";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The response is ");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("The response is ");
+            //Debug.WriteLine(response.StatusCode);
 
             IEnumerable<PlaceDto> places = response.Content.ReadAsAsync<IEnumerable<PlaceDto>>().Result;
-            Debug.WriteLine("Numbers of Places");
-            Debug.WriteLine(places.Count());
+            //Debug.WriteLine("Numbers of Places");
+            //Debug.WriteLine(places.Count());
 
 
             return View(places);
@@ -49,18 +49,18 @@ namespace PassionProject.TravelWorlds.Controllers
             string url = "FindPlace/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The response is ");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("The response is ");
+            //Debug.WriteLine(response.StatusCode);
 
             PlaceDto selectedplace = response.Content.ReadAsAsync<PlaceDto>().Result;
-            Debug.WriteLine("Places Received");
-            Debug.WriteLine(selectedplace.PlaceName);
+            //Debug.WriteLine("Places Received");
+            //Debug.WriteLine(selectedplace.PlaceName);
 
             return View(selectedplace);
         }
 
-        // GET: Places/Create
-        public ActionResult Create()
+        // GET: Places/New
+        public ActionResult New()
         {
             return View();
         }

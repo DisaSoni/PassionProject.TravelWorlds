@@ -293,6 +293,8 @@
     <Content Include="Views\Countries\Details.cshtml" />
     <Content Include="Views\Places\List.cshtml" />
     <Content Include="Views\Places\Details.cshtml" />
+    <Content Include="Views\Places\New.cshtml" />
+    <Content Include="Views\Countries\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

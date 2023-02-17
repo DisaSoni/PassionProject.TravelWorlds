@@ -28,12 +28,12 @@ namespace PassionProject.TravelWorlds.Controllers
             string url = "ListCountries";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The response is ");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("The response is ");
+            //Debug.WriteLine(response.StatusCode);
 
             IEnumerable<CountriesDto> countries = response.Content.ReadAsAsync<IEnumerable<CountriesDto>>().Result;
-            Debug.WriteLine("Numbers of Countries");
-            Debug.WriteLine(countries.Count());
+            //Debug.WriteLine("Numbers of Countries");
+            //Debug.WriteLine(countries.Count());
 
 
             return View(countries);
@@ -48,18 +48,18 @@ namespace PassionProject.TravelWorlds.Controllers
             string url = "FindCountries/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The response is ");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("The response is ");
+            //Debug.WriteLine(response.StatusCode);
 
             CountriesDto selectedCountry = response.Content.ReadAsAsync<CountriesDto>().Result;
-            Debug.WriteLine("Country Received: ");
-            Debug.WriteLine(selectedCountry.CountryName);
+            //Debug.WriteLine("Country Received: ");
+            //Debug.WriteLine(selectedCountry.CountryName);
 
             return View(selectedCountry);
         }
 
-        // GET: Countries/Create
-        public ActionResult Create()
+        // GET: Countries/New
+        public ActionResult New()
         {
             return View();
         }
