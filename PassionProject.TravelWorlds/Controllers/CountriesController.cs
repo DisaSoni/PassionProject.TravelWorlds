@@ -17,6 +17,7 @@ namespace PassionProject.TravelWorlds.Controllers
         static CountriesController()
         {
             client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44309/api/CountriesData/");
         }
         // GET: Countries/List
         public ActionResult List()
@@ -24,7 +25,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our countries data api to retrive a list of countries
             //curl https://localhost:44309/api/CountriesData/ListCountries
 
-            string url = " https://localhost:44309/api/CountriesData/ListCountries";
+            string url = "ListCountries";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response is ");
@@ -44,7 +45,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our Countries data api to retrive a one country.
             //curl https://localhost:44309/api/CountriesData/FindCountries/{id}
 
-            string url = "https://localhost:44309/api/CountriesData/FindCountries/" + id;
+            string url = "FindCountries/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response is ");
