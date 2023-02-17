@@ -51,7 +51,7 @@ namespace PassionProject.TravelWorlds.Controllers
             Debug.WriteLine("The response is ");
             Debug.WriteLine(response.StatusCode);
 
-            CountriesDto selectedCountry= response.Content.ReadAsAsync<CountriesDto>().Result;
+            CountriesDto selectedCountry = response.Content.ReadAsAsync<CountriesDto>().Result;
             Debug.WriteLine("Country Received: ");
             Debug.WriteLine(selectedCountry.CountryName);
 
