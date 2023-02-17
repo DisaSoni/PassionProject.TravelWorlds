@@ -26,7 +26,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our provinces data api to retriveve a list province
             //curl https://localhost:44309/api/ProvincesData/https://localhost:44309/api/ProvincesData/ListProvinces
 
-            string Url = "ListProvinces";
+            string Url = "ProvincesData/ListProvinces";
             HttpResponseMessage response = client.GetAsync(Url).Result;
 
             //Debug.WriteLine("The response code is");
@@ -65,6 +65,9 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Provinces/New
         public ActionResult New()
         {
+            //information about all province in the system.
+            //GET: api/provincesdata/listprovinces
+
             return View();
         }
 
@@ -77,7 +80,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //Objective: add a new province in our system
             //curl -H "Content-Type:application/json"-d @provinces.json https://localhost:44309/api/ProvincesData/AddProvince
 
-            string Url = "AddProvince";
+            string Url = "AddProvinces";
 
             string jsonpayload = jss.Serialize(province);
 

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<PassionProject.TravelWorlds.Models.CountriesDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List Of Countries</h2>
+
+@foreach(var countries in Model)
+            {
+                <h2><a href="/Countries/Details/@countries.CountryID">@countries.CountryName</a></h2>
+             
+            }
