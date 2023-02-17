@@ -11,13 +11,18 @@ namespace PassionProject.TravelWorlds.Controllers
 {
     public class PlacesController : Controller
     {
+        private static readonly HttpClient client;
+
+        static PlacesController()
+        {
+            client = new HttpClient();
+        }
         // GET: Places/List
         public ActionResult List()
         {
             //objective: communication with our Places data api to retrive a list of places.
             //curl https://localhost:44309/api/PlacesData/ListPlaces
 
-            HttpClient client = new HttpClient() { };
             string url = "https://localhost:44309/api/PlacesData/ListPlaces";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
@@ -40,7 +45,6 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our Places data api to retrive a one place.
             //curl https://localhost:44309/api/PlacesData/FindPlace/{id}
 
-            HttpClient client = new HttpClient() { };
             string url = "https://localhost:44309/api/PlacesData/FindPlace/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
