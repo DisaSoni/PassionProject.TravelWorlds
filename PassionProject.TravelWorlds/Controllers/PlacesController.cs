@@ -46,7 +46,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our Places data api to retrive a one place.
             //curl https://localhost:44309/api/PlacesData/FindPlace/{id}
 
-            string url = "FindPlace/"+id;
+            string url = "FindPlace/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response is ");

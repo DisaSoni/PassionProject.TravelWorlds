@@ -185,6 +185,7 @@
     <Compile Include="Controllers\CountriesDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlacesController.cs" />
     <Compile Include="Controllers\PlacesDataController.cs" />
     <Compile Include="Controllers\ProvincesController.cs" />
     <Compile Include="Controllers\ProvincesDataController.cs" />
@@ -288,10 +289,13 @@
     <Content Include="Views\Provinces\Details.cshtml" />
     <Content Include="Views\Provinces\New.cshtml" />
     <Content Include="Views\Provinces\Error.cshtml" />
+    <Content Include="Views\Countries\List.cshtml" />
+    <Content Include="Views\Countries\Details.cshtml" />
+    <Content Include="Views\Places\List.cshtml" />
+    <Content Include="Views\Places\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Countries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
