@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace PassionProject.TravelWorlds.Controllers
 {
@@ -13,6 +14,7 @@ namespace PassionProject.TravelWorlds.Controllers
     {
 
         private static readonly HttpClient client;
+        JavaScriptSerializer jss = new JavaScriptSerializer();
 
         static CountriesController()
         {
@@ -58,6 +60,10 @@ namespace PassionProject.TravelWorlds.Controllers
             return View(selectedCountry);
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
         // GET: Countries/New
         public ActionResult New()
         {
@@ -66,17 +72,31 @@ namespace PassionProject.TravelWorlds.Controllers
 
         // POST: Countries/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Countries countries)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            Debug.WriteLine("json payload:");
+            //Debug.WriteLine(countries.CountryName);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            //objective: add anew country in our system
+            // curl -H "Content-Type:application/json" -d @Countries.json https://localhost:44309/api/CountriesData/AddCountries
+            string url = "AddCountries";
+
+            
+            string jsonpayload = jss.Serialize(countries);
+
+            Debug.WriteLine(jsonpayload);
+
+            HttpContent content= new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if(response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
 

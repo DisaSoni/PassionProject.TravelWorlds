@@ -3,12 +3,12 @@
     ViewBag.Title = "New";
 }
 
-<h2>Create Counntry</h2>
-
-<form action="/Countries/New " method="post"></form>
-
-<div>
-    <label>Country Name: </label> <input type="text" name="CountriesName" />"
-</div>
-
-
+<h2>Create Country</h2>
+<form action="/Countries/Create" method="POST">
+    <div>
+        <label>Country Name:</label> <input type="text" name="CountryName" />
+    </div>
+    <div>
+        <input type="submit" value="Add Country" />
+    </div>
+</form>

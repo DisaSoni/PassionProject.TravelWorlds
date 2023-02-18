@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace PassionProject.TravelWorlds.Controllers
 {
@@ -67,18 +68,28 @@ namespace PassionProject.TravelWorlds.Controllers
 
         // POST: Places/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Place place)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            Debug.WriteLine("place");
+            //Debug.WriteLine(place.PlaceName);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            //objective: add a new places in our system
+            // curl -H "Content-Type:application/json" -d @place.json https://localhost:44309/api/PlacesData/addplace
+            string url = "addplace";
+
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string jsonpayload = jss.Serialize(place);
+
+            Debug.WriteLine(jsonpayload);
+
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            client.PostAsync(url,content);
+
+
+            return RedirectToAction("List");
+
         }
 
         // GET: Places/Edit/5
