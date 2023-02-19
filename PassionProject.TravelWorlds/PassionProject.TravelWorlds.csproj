@@ -300,6 +300,7 @@
     <Content Include="Views\Countries\Edit.cshtml" />
     <Content Include="Views\Provinces\Edit.cshtml" />
     <Content Include="Views\Countries\DeleteConfirm.cshtml" />
+    <Content Include="Views\Provinces\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

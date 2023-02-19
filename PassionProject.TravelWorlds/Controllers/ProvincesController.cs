@@ -121,24 +121,31 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         // GET: Provinces/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "findProvince/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            ProvinceDto selectedprovinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
+            return View(selectedprovinces);
         }
 
         // POST: Provinces/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Province province)
         {
-            try
+            string url = "DeleteProvince/" + id;
+            string jsonpayload = jss.Serialize(province);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            Debug.WriteLine(content);
+            if (response.IsSuccessStatusCode)
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Error");
             }
         }
     }

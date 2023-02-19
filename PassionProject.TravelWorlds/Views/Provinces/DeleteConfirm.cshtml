@@ -1,0 +1,22 @@
+﻿@model PassionProject.TravelWorlds.Models.ProvinceDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Delete Country</h2>
+
+<a href="/Provinces/List">Cancel</a>
+<a href="/Provinces/DeleteConfirm/@Model.ProvinceID"> Delete</a>
+
+
+<h3> Are You sure want to delete country?</h3>
+
+
+<h1>@Model.ProvinceID @Model.ProvinceName</h1>
+<div> @Model.CountryName</div>
+
+<form action="/Provinces/Delete/@Model.ProvinceID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>
+
