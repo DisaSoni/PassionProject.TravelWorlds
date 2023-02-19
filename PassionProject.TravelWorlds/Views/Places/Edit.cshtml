@@ -1,0 +1,29 @@
+﻿@model PassionProject.TravelWorlds.Models.PlaceDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Place</h2>
+
+<form action="/Places/Update/@Model.PlaceID" method="POST">
+
+    <div>
+        <label>Places Id: </label> <input type="text" name="PlaceID" value="@Model.PlaceID" />
+    </div>
+
+    <div>
+        <label>Places Name: </label> <input type="text" name="PlaceName"  value="@Model.PlaceName"/>
+    </div>
+    <div>
+        <label> Places Reviews: </label> <input type="text" name="PlaceReviews" value="@Model.PlaceReviews"/>
+    </div>
+    <div>
+        <label> Province ID: </label> <input type="number" name="ProvinceId"  value="@Model.ProvinceID"/>"
+    </div>
+
+    <div>
+        <input type="submit" value="Edit Place" />
+    </div>
+</form>
+

@@ -109,13 +109,8 @@ namespace PassionProject.TravelWorlds.Controllers
             string url = "FindPlace/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PlaceDto selectedplace = response.Content.ReadAsAsync<PlaceDto>().Result;
-
-            //existing Province
-            url = "ProvincesData/ListProvinces/";
-            response = client.GetAsync(url).Result;
- 
-
             return View(selectedplace);
+
         }
 
         // POST: Places/Update/5

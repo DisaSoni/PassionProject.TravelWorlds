@@ -302,6 +302,7 @@
     <Content Include="Views\Countries\DeleteConfirm.cshtml" />
     <Content Include="Views\Provinces\DeleteConfirm.cshtml" />
     <Content Include="Views\Places\DeleteConfirm.cshtml" />
+    <Content Include="Views\Places\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
