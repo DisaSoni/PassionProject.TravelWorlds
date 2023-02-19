@@ -13,7 +13,7 @@ namespace PassionProject.TravelWorlds.Controllers
     public class PlacesController : Controller
     {
         private static readonly HttpClient client;
-
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
         static PlacesController()
         {
             client = new HttpClient();
@@ -60,6 +60,10 @@ namespace PassionProject.TravelWorlds.Controllers
             return View(selectedplace);
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
         // GET: Places/New
         public ActionResult New()
         {
@@ -77,7 +81,7 @@ namespace PassionProject.TravelWorlds.Controllers
             // curl -H "Content-Type:application/json" -d @place.json https://localhost:44309/api/PlacesData/addplace
             string url = "addplace";
 
-            JavaScriptSerializer jss = new JavaScriptSerializer();
+           
             string jsonpayload = jss.Serialize(place);
 
             Debug.WriteLine(jsonpayload);
@@ -85,10 +89,17 @@ namespace PassionProject.TravelWorlds.Controllers
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
 
-            client.PostAsync(url,content);
+            HttpResponseMessage response = client.PostAsync(url,content).Result;
+            if(response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
 
 
-            return RedirectToAction("List");
 
         }
 
