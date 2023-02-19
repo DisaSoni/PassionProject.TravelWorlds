@@ -101,22 +101,29 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Provinces/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            string url = "findProvince/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            ProvinceDto selectedprovinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
+            return View(selectedprovinces);
         }
 
         // POST: Provinces/Update/5
         [HttpPost]
-        public ActionResult Update(int id, FormCollection collection)
+        public ActionResult Update(int id, Province province)
         {
-            try
+            string url = "UpdateProvince/" + id;
+            string jsonpayload = jss.Serialize(province);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            Debug.WriteLine(content);
+            if (response.IsSuccessStatusCode)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Error");
             }
         }
 
