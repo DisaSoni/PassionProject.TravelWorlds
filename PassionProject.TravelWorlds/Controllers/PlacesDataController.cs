@@ -30,6 +30,7 @@ namespace PassionProject.TravelWorlds.Controllers
                 PlaceID = a.PlaceID,
                 PlaceName =a.PlaceName,
                 PlaceReviews = a.PlaceReviews,
+                ProvinceID = a.ProvinceID,
                 ProvinceName = a.Province.ProvinceName
             }
                 ));
@@ -49,6 +50,7 @@ namespace PassionProject.TravelWorlds.Controllers
                 PlaceID = Place.PlaceID,
                 PlaceName = Place.PlaceName,
                 PlaceReviews = Place.PlaceReviews,
+                ProvinceID = Place.Province.ProvinceID,
                 ProvinceName = Place.Province.ProvinceName
             };
 

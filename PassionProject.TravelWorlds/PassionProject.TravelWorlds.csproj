@@ -297,6 +297,8 @@
     <Content Include="Views\Countries\New.cshtml" />
     <Content Include="Views\Countries\Error.cshtml" />
     <Content Include="Views\Places\Error.cshtml" />
+    <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\Provinces\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,6 +29,7 @@ namespace PassionProject.TravelWorlds.Controllers
             Provinces.ForEach(a => ProvinceDtos.Add(new ProvinceDto(){
                 ProvinceID = a.ProvinceID,
                 ProvinceName = a.ProvinceName,
+                CountryID = a.CountryID,
                 CountryName = a.Countries.CountryName
 
             }));
@@ -47,6 +48,7 @@ namespace PassionProject.TravelWorlds.Controllers
             {
                 ProvinceID = Province.ProvinceID,
                 ProvinceName = Province.ProvinceName,
+                CountryID = Province.Countries.CountryID,
                 CountryName = Province.Countries.CountryName
 
             };

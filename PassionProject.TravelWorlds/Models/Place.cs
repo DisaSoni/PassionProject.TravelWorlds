@@ -17,7 +17,7 @@ namespace PassionProject.TravelWorlds.Models
 
         public string PlaceReviews { get; set; }
 
-        // more country in Province
+        // more Places in Province
         [ForeignKey("Province")]
 
         public int ProvinceID { get; set; }
@@ -30,8 +30,12 @@ namespace PassionProject.TravelWorlds.Models
         public string PlaceName { get; set; }
 
         public string PlaceReviews { get; set; }
+        public int ProvinceID { get; set; }
         public string ProvinceName { get; set; }
-        
+
+      
+
+
 
     }
 }

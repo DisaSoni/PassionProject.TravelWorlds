@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
+
+
 namespace PassionProject.TravelWorlds.Controllers
 {
     public class CountriesController : Controller
@@ -103,22 +105,29 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Countries/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            string url = "FindCountries/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            CountriesDto selectedCountry = response.Content.ReadAsAsync<CountriesDto>().Result;
+            return View(selectedCountry);
         }
 
-        // POST: Countries/Edit/5
+        // POST: Countries/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, Countries countries)
         {
-            try
+            string url = "UpdateCountries/" + id;
+            string jsonpayload = jss.Serialize(countries);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            Debug.WriteLine(content);
+            if (response.IsSuccessStatusCode)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Error");
             }
         }
 

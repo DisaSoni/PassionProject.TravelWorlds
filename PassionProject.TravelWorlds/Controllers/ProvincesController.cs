@@ -104,9 +104,9 @@ namespace PassionProject.TravelWorlds.Controllers
             return View();
         }
 
-        // POST: Provinces/Edit/5
+        // POST: Provinces/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, FormCollection collection)
         {
             try
             {
