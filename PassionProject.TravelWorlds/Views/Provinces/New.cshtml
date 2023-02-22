@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<PassionProject.TravelWorlds.Models.CountriesDto>
+
 @{
     ViewBag.Title = "Create";
 }
@@ -9,7 +10,13 @@
         <label>Province Name:</label> <input type="text" name="ProvinceName" />
     </div>
     <div>
-        <label>Country  Id:</label> <input type="number" name="CountryID" />
+        <label>Country:</label> 
+        <select name="CountryID">
+            @foreach (var countries in Model)
+            {
+               <option value="@countries.CountryID"> @countries.CountryName </option>
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Add Province" />

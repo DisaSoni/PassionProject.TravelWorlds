@@ -18,7 +18,7 @@ namespace PassionProject.TravelWorlds.Controllers
         static ProvincesController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44309/api/ProvincesData/");
+            client.BaseAddress = new Uri("https://localhost:44309/api/");
         }
         // GET: Provinces/List
         public ActionResult List()
@@ -26,7 +26,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our provinces data api to retriveve a list province
             //curl https://localhost:44309/api/ProvincesData/https://localhost:44309/api/ProvincesData/ListProvinces
 
-            string Url = "ListProvinces";
+            string Url = "ProvincesData/ListProvinces";
             HttpResponseMessage response = client.GetAsync(Url).Result;
 
             //Debug.WriteLine("The response code is");
@@ -45,7 +45,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our provinces data api to retriveve a list of Province
             //curl https://localhost:44309/api/ProvincesData/findProvince{id}
     
-            string Url = "findProvince/"+id;
+            string Url = "ProvincesData/findProvince/" + id;
             HttpResponseMessage response = client.GetAsync(Url).Result;
 
             //Debug.WriteLine("The response code is");
@@ -65,7 +65,14 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Provinces/New
         public ActionResult New()
         {
-            return View();
+            //information about all country in the system.
+            //GET api/CountriesData/ListCountries
+
+            string url = "CountriesData/ListCountries";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<CountriesDto> CountriesOptions = response.Content.ReadAsAsync<IEnumerable<CountriesDto>>().Result;
+
+            return View(CountriesOptions);
         }
 
         // POST: Provinces/Create
@@ -77,7 +84,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //Objective: add a new province in our system
             //curl -H "Content-Type:application/json"-d @provinces.json https://localhost:44309/api/ProvincesData/AddProvince
 
-            string Url = "AddProvince";
+            string Url = "ProvincesData/AddProvince";
 
             string jsonpayload = jss.Serialize(province);
 
@@ -101,9 +108,11 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Provinces/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "findProvince/" + id;
+            string url = "ProvincesData/findProvince/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             ProvinceDto selectedprovinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
+
+            //also like to include all country to choose from when updating this province
             return View(selectedprovinces);
         }
 
@@ -111,7 +120,7 @@ namespace PassionProject.TravelWorlds.Controllers
         [HttpPost]
         public ActionResult Update(int id, Province province)
         {
-            string url = "UpdateProvince/" + id;
+            string url = "ProvincesData/UpdateProvince/" + id;
             string jsonpayload = jss.Serialize(province);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -130,7 +139,7 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Provinces/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "findProvince/" + id;
+            string url = "ProvincesData/findProvince/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             ProvinceDto selectedprovinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
             return View(selectedprovinces);
@@ -140,7 +149,7 @@ namespace PassionProject.TravelWorlds.Controllers
         [HttpPost]
         public ActionResult Delete(int id, Province province)
         {
-            string url = "DeleteProvince/" + id;
+            string url = "ProvincesData/DeleteProvince/" + id;
             string jsonpayload = jss.Serialize(province);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

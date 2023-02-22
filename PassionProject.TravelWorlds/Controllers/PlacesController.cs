@@ -17,7 +17,7 @@ namespace PassionProject.TravelWorlds.Controllers
         static PlacesController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44309/api/PlacesData/");
+            client.BaseAddress = new Uri("https://localhost:44309/api/");
         }
         // GET: Places/List
         public ActionResult List()
@@ -25,7 +25,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our Places data api to retrive a list of places.
             //curl https://localhost:44309/api/PlacesData/ListPlaces
 
-            string url = "ListPlaces";
+            string url = "PlacesData/ListPlaces";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response is ");
@@ -47,7 +47,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our Places data api to retrive a one place.
             //curl https://localhost:44309/api/PlacesData/FindPlace/{id}
 
-            string url = "FindPlace/" + id;
+            string url = "PlacesData/FindPlace/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response is ");
@@ -67,7 +67,14 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Places/New
         public ActionResult New()
         {
-            return View();
+            //information about all country in the system.
+            //GET api/ProvincesData/ListProvinces
+
+            string Url = "ProvincesData/ListProvinces";
+            HttpResponseMessage response = client.GetAsync(Url).Result;
+            IEnumerable<ProvinceDto> ProvincesOption = response.Content.ReadAsAsync<IEnumerable<ProvinceDto>>().Result;
+
+            return View(ProvincesOption);
         }
 
         // POST: Places/Create
@@ -79,7 +86,7 @@ namespace PassionProject.TravelWorlds.Controllers
 
             //objective: add a new places in our system
             // curl -H "Content-Type:application/json" -d @place.json https://localhost:44309/api/PlacesData/addplace
-            string url = "addplace";
+            string url = "PlacesData/addplace";
 
            
             string jsonpayload = jss.Serialize(place);
@@ -106,7 +113,7 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Places/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "FindPlace/" + id;
+            string url = "PlacesData/FindPlace/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PlaceDto selectedplace = response.Content.ReadAsAsync<PlaceDto>().Result;
             return View(selectedplace);
@@ -117,7 +124,7 @@ namespace PassionProject.TravelWorlds.Controllers
         [HttpPost]
         public ActionResult Update(int id, Place place)
         {
-            string url = "UpdatePlace/" + id;
+            string url = "PlacesData/UpdatePlace/" + id;
             string jsonpayload = jss.Serialize(place);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -136,7 +143,7 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Places/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "FindPlace/" + id;
+            string url = "PlacesData/FindPlace/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PlaceDto selectedplace = response.Content.ReadAsAsync<PlaceDto>().Result;
             return View(selectedplace);
@@ -147,7 +154,7 @@ namespace PassionProject.TravelWorlds.Controllers
         public ActionResult Delete(int id, Place place)
         {
 
-            string url = "DeletePlace/" + id;
+            string url = "PlacesData/DeletePlace/" + id;
             string jsonpayload = jss.Serialize(place);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
