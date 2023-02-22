@@ -1,21 +1,26 @@
-﻿@model PassionProject.TravelWorlds.Models.ProvinceDto
+﻿@model PassionProject.TravelWorlds.Models.ViewModels.UpdateProvince
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit province</h2>
 
-<form action="/Provinces/Update/@Model.ProvinceID" method="POST">
+<form action="/Provinces/Update/@Model.SelectedProvinces.ProvinceID" method="POST">
     <div>
-        <label>Province Id:</label> <input type="text" name="ProvinceId" value="@Model.ProvinceID" />
+        <label>Province Id:</label> <input type="text" name="ProvinceId" value="@Model.SelectedProvinces.ProvinceID" />
     </div>
     <div>
-        <label>Province Name:</label> <input type="text" name="ProvinceName" Value="@Model.ProvinceName" />
+        <label>Province Name:</label> <input type="text" name="ProvinceName" Value="@Model.SelectedProvinces.ProvinceName" />
     </div>
     <div>
-        <label>Country  Id:</label> <input type="number" name="CountryID" value="@Model.CountryID" />
-    </div>
-    <div>
-        <input type="submit" value="Edit Province" />
-    </div>
+        <label>Country</label>
+        <select name="CountryID">
+            @foreach (var countries in Model.CountriesOptions)
+            {
+                <option value="@countries.CountryID"> @countries.CountryName </option>
+            }
+        </select>
+        <div>
+            <input type="submit" value="Edit Province" />
+        </div>
 </form>

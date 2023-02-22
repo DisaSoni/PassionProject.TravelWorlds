@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
 using PassionProject.TravelWorlds.Models;
+using PassionProject.TravelWorlds.Models.ViewModels;
 using System.Web.Script.Serialization;
+
 
 namespace PassionProject.TravelWorlds.Controllers
 {
@@ -108,12 +110,24 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Provinces/Edit/5
         public ActionResult Edit(int id)
         {
+
+            UpdateProvince ViewModel = new UpdateProvince();
+
+             //the existing provice information
             string url = "ProvincesData/findProvince/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            ProvinceDto selectedprovinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
+            ProvinceDto Selectedprovinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
+            ViewModel.SelectedProvinces = Selectedprovinces;
 
             //also like to include all country to choose from when updating this province
-            return View(selectedprovinces);
+            url = "CountriesData/ListCountries/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<CountriesDto> CountriesOptions = response.Content.ReadAsAsync<IEnumerable<CountriesDto>>().Result;
+
+            ViewModel.CountriesOptions = CountriesOptions;
+
+
+            return View(ViewModel);
         }
 
         // POST: Provinces/Update/5
