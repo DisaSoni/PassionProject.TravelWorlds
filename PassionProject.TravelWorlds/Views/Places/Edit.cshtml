@@ -1,4 +1,4 @@
-﻿@model PassionProject.TravelWorlds.Models.PlaceDto
+﻿@model PassionProject.TravelWorlds.Models.ViewModels.UpdatePlace
 
 @{
     ViewBag.Title = "Edit";
@@ -6,20 +6,26 @@
 
 <h2>Edit Place</h2>
 
-<form action="/Places/Update/@Model.PlaceID" method="POST">
+<form action="/Places/Update/@Model.SelectedPlace.PlaceID" method="POST">
 
     <div>
-        <label>Places Id: </label> <input type="text" name="PlaceID" value="@Model.PlaceID" />
+        <label>Places Id: </label> <input type="text" name="PlaceID" value="@Model.SelectedPlace.PlaceID" />
     </div>
 
     <div>
-        <label>Places Name: </label> <input type="text" name="PlaceName"  value="@Model.PlaceName"/>
+        <label>Places Name: </label> <input type="text" name="PlaceName"  value="@Model.SelectedPlace.PlaceName"/>
     </div>
     <div>
-        <label> Places Reviews: </label> <input type="text" name="PlaceReviews" value="@Model.PlaceReviews"/>
+        <label> Places Reviews: </label> <input type="text" name="PlaceReviews" value="@Model.SelectedPlace.PlaceReviews"/>
     </div>
     <div>
-        <label> Province ID: </label> <input type="number" name="ProvinceId"  value="@Model.ProvinceID"/>"
+        <label> Province:</label>
+        <select name="ProvinceID">
+            @foreach (var province in Model.ProvinceOptions)
+            {
+                <option value="@province.ProvinceID"> @province.ProvinceName </option>
+            }
+        </select>
     </div>
 
     <div>
