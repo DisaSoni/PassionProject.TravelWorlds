@@ -1,5 +1,5 @@
 ﻿
-@model PassionProject.TravelWorlds.Models.CountriesDto
+@model PassionProject.TravelWorlds.Models.ViewModels.DetailsCountries
 @{
     ViewBag.Title = "Details";
 }
@@ -7,10 +7,23 @@
 
 <a href="/Countries/List"> Go Back to List</a>
 
-<a href="/Countries/Edit/@Model.CountryID"> Update</a>
+<a href="/Countries/Edit/@Model.SelectedCountries.CountryID"> Update</a>
 
-<a href="/Countries/DeleteConfirm/@Model.CountryID"> Delete</a>
+<a href="/Countries/DeleteConfirm/@Model.SelectedCountries.CountryID"> Delete</a>
 
 <h2>Detail</h2>
 
-<h2>@Model.CountryID @Model.CountryName</h2>
+<h2>@Model.SelectedCountries.CountryID @Model.SelectedCountries.CountryName</h2>
+
+<h3> Province Related to this Country</h3>
+
+<div>
+    
+@foreach(var province in Model.RelatedProvince)
+            {
+     
+            <a href="@province.ProvinceID">@province.ProvinceName</a>
+       
+            }
+     
+</div>

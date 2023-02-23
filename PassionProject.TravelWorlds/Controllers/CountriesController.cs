@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using PassionProject.TravelWorlds.Models.ViewModels;
 using System.Web.Script.Serialization;
 
 
@@ -21,7 +22,7 @@ namespace PassionProject.TravelWorlds.Controllers
         static CountriesController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44309/api/CountriesData/");
+            client.BaseAddress = new Uri("https://localhost:44309/api/");
         }
         // GET: Countries/List
         public ActionResult List()
@@ -29,7 +30,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our countries data api to retrive a list of countries
             //curl https://localhost:44309/api/CountriesData/ListCountries
 
-            string url = "ListCountries";
+            string url = "CountriesData/ListCountries";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response is ");
@@ -49,17 +50,31 @@ namespace PassionProject.TravelWorlds.Controllers
             //objective: communication with our Countries data api to retrive a one country.
             //curl https://localhost:44309/api/CountriesData/FindCountries/{id}
 
-            string url = "FindCountries/" + id;
+            DetailsCountries ViewModel = new DetailsCountries();
+
+            string url = "CountriesData/FindCountries/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response is ");
             //Debug.WriteLine(response.StatusCode);
 
-            CountriesDto selectedCountry = response.Content.ReadAsAsync<CountriesDto>().Result;
+            CountriesDto SelectedCountry = response.Content.ReadAsAsync<CountriesDto>().Result;
             //Debug.WriteLine("Country Received: ");
             //Debug.WriteLine(selectedCountry.CountryName);
 
-            return View(selectedCountry);
+            ViewModel.SelectedCountries = SelectedCountry;
+
+            //showcase infromation about province realaated to this country
+            //send a request to gather information
+
+            url = "ProvincesData/ListProvincesForCountries/" +id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<ProvinceDto> RelatedProvince = response.Content.ReadAsAsync<IEnumerable<ProvinceDto>>().Result; 
+
+            ViewModel.RelatedProvince = RelatedProvince;
+
+
+            return View(ViewModel);
         }
 
         public ActionResult Error()
@@ -81,7 +96,7 @@ namespace PassionProject.TravelWorlds.Controllers
 
             //objective: add anew country in our system
             // curl -H "Content-Type:application/json" -d @Countries.json https://localhost:44309/api/CountriesData/AddCountries
-            string url = "AddCountries";
+            string url = "CountriesData/AddCountries";
 
             
             string jsonpayload = jss.Serialize(countries);
@@ -105,7 +120,7 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Countries/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "FindCountries/" + id;
+            string url = "CountriesData/FindCountries/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             CountriesDto selectedCountry = response.Content.ReadAsAsync<CountriesDto>().Result;
             return View(selectedCountry);
@@ -115,7 +130,7 @@ namespace PassionProject.TravelWorlds.Controllers
         [HttpPost]
         public ActionResult Update(int id, Countries countries)
         {
-            string url = "UpdateCountries/" + id;
+            string url = "CountriesData/UpdateCountries/" + id;
             string jsonpayload = jss.Serialize(countries);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -134,7 +149,7 @@ namespace PassionProject.TravelWorlds.Controllers
         // GET: Countries/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "FindCountries/" + id;
+            string url = "CountriesData/FindCountries/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             CountriesDto selectedCountry = response.Content.ReadAsAsync<CountriesDto>().Result;
             return View(selectedCountry);
@@ -144,7 +159,7 @@ namespace PassionProject.TravelWorlds.Controllers
         [HttpPost]
         public ActionResult Delete(int id, Countries countries)
         {
-            string url = "DeleteCountries/" + id;
+            string url = "CountriesData/DeleteCountries/" + id;
             string jsonpayload = jss.Serialize(countries);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

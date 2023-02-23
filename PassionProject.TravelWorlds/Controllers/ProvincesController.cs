@@ -46,18 +46,29 @@ namespace PassionProject.TravelWorlds.Controllers
         {
             //objective: communication with our provinces data api to retriveve a list of Province
             //curl https://localhost:44309/api/ProvincesData/findProvince{id}
-    
+
+
+        
+
             string Url = "ProvincesData/findProvince/" + id;
             HttpResponseMessage response = client.GetAsync(Url).Result;
 
             //Debug.WriteLine("The response code is");
             //Debug.WriteLine(response.StatusCode);
 
-            ProvinceDto selectedprovinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
+            ProvinceDto SelectedProvinces = response.Content.ReadAsAsync<ProvinceDto>().Result;
             //Debug.WriteLine("Number of Province received");
-            //Debug.WriteLine(selectedprovinces.ProvinceName);
+            //Debug.WriteLine(SelectedProvinces.ProvinceName);
 
-            return View(selectedprovinces);
+
+            
+            //showcase information about places related
+            //gather information about places related to particular Province id
+
+             
+
+
+            return View(SelectedProvinces);
         }
         
         public ActionResult Error()

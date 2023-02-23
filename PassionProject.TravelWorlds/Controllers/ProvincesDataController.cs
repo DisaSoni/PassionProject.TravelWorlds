@@ -37,6 +37,26 @@ namespace PassionProject.TravelWorlds.Controllers
             return ProvinceDtos;
         }
 
+        // GET: api/ProvincesData/ListProvincesForCountries/3
+       
+        [HttpGet]
+        public IEnumerable<ProvinceDto> ListProvincesForCountries(int id)
+        {
+            List<Province> Provinces = db.Provinces.Where(a=>a.CountryID==id).ToList();
+            List<ProvinceDto> ProvinceDtos = new List<ProvinceDto>();
+
+            Provinces.ForEach(a => ProvinceDtos.Add(new ProvinceDto()
+            {
+                ProvinceID = a.ProvinceID,
+                ProvinceName = a.ProvinceName,
+                CountryID = a.CountryID,
+                CountryName = a.Countries.CountryName
+
+            }));
+
+            return ProvinceDtos;
+        }
+
         // GET: api/ProvincesData/FindProvince/5
         //curl “https://localhost:44309/api/ProvincesData/FindProvince/8”
         [ResponseType(typeof(Province))]
