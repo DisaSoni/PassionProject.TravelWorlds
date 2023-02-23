@@ -10,8 +10,16 @@
 
 <a href="/places/DeleteConfirm/@Model.PlaceID"> Delete</a>
 
-<h2>Detail</h2>
+<h2>Show Places</h2>
 
 <h2>@Model.PlaceName</h2>
-<div>Review: @Model.PlaceReviews</div>
-<div> Province: @Model.ProvinceID</div>
+<h3>Review: @Model.PlaceReviews</h3>
+
+<div>
+    <h3> Province </h3>
+
+    <h2><a href="/Provinces/Details/@Model.ProvinceID">  @Model.ProvinceName </a></h2>
+
+</div>
+
+

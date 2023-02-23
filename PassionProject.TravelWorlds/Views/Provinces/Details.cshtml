@@ -12,11 +12,11 @@
 
 <h2> @Model.SelectedProvinces.ProvinceName </h2>
 
-<div>Country Id: @Model.SelectedProvinces.CountryID</div>
+<div>Country Name: @Model.SelectedProvinces.CountryName</div>
 
 
 <div>
-    <h3> Provinces</h3>
+    <h3> Places in this Province</h3>
     @foreach (var Places in Model.RealatedPlaces)
             {
                 <a href="/Places/Details/@Places.PlaceID">@Places.PlaceName</a>
