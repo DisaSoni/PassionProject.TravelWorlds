@@ -48,7 +48,7 @@ namespace PassionProject.TravelWorlds.Controllers
             //curl https://localhost:44309/api/ProvincesData/findProvince{id}
 
 
-        
+            DetailsProvinces ViewModel = new DetailsProvinces();
 
             string Url = "ProvincesData/findProvince/" + id;
             HttpResponseMessage response = client.GetAsync(Url).Result;
@@ -60,15 +60,18 @@ namespace PassionProject.TravelWorlds.Controllers
             //Debug.WriteLine("Number of Province received");
             //Debug.WriteLine(SelectedProvinces.ProvinceName);
 
+          
+            ViewModel.SelectedProvinces = SelectedProvinces;
 
-            
             //showcase information about places related
             //gather information about places related to particular Province id
 
-             
+            Url = "PlacesData/ListPlacesForProvinces/" + id;
+            response = client.GetAsync(Url).Result;
+            IEnumerable<PlaceDto> RealatedPlaces = response.Content.ReadAsAsync<IEnumerable<PlaceDto>>().Result; 
+            ViewModel.RealatedPlaces = RealatedPlaces;
 
-
-            return View(SelectedProvinces);
+            return View(ViewModel);
         }
         
         public ActionResult Error()

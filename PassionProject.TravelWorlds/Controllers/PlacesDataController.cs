@@ -38,9 +38,35 @@ namespace PassionProject.TravelWorlds.Controllers
             return PlaceDtos;
         }
 
+        /// <summary>
+        /// Gather Information 
+        /// </summary>
+        /// <param name="id"> Province ID</param>
+        /// <returns></returns>
 
+        // GET: api/PlacesData/ListPlacesForProvinces/3
+        //curl https://localhost:44309/api/PlacesData/ListPlacesForProvinces
+        [HttpGet]
+        public IEnumerable<PlaceDto> ListPlacesForProvinces(int id)
+        {
 
-  
+            List<Place> Places = db.Places.Where(a=>a.ProvinceID==id).ToList();
+            List<PlaceDto> PlaceDtos = new List<PlaceDto>();
+
+            Places.ForEach(a => PlaceDtos.Add(new PlaceDto()
+            {
+
+                PlaceID = a.PlaceID,
+                PlaceName = a.PlaceName,
+                PlaceReviews = a.PlaceReviews,
+                ProvinceID = a.ProvinceID,
+                ProvinceName = a.Province.ProvinceName
+            }
+                ));
+
+            return PlaceDtos;
+        }
+
 
         // GET: api/PlacesData/FindPlace/5
         //curl "https://localhost:44309/api/PlacesData/FindPlace/8"
