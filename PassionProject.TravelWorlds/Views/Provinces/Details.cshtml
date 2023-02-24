@@ -4,14 +4,14 @@
 }
 
 
-<h3><a href="/Provinces/list">Go back to list</a></h3>
+<h3><a class="back" href="/Provinces/list">Go back to list</a></h3>
 
 <h1> Province</h1>
 
 <div class="active" style="float:right; font-size:30px;">
-    <a href="/Provinces/Edit/@Model.SelectedProvinces.ProvinceID"> Update</a>
+    <a class="update" href="/Provinces/Edit/@Model.SelectedProvinces.ProvinceID"> Update</a>
 
-    <a href="/Provinces/DeleteConfirm/@Model.SelectedProvinces.ProvinceID"> Delete</a>
+    <a class="delete" href="/Provinces/DeleteConfirm/@Model.SelectedProvinces.ProvinceID"> Delete</a>
 </div>
 
 <h1 style="font-size:50px; text-align:center" > @Model.SelectedProvinces.ProvinceName </h1>
@@ -23,8 +23,51 @@
     <h2><u> Places in this Province</u></h2>
     @foreach (var Places in Model.RealatedPlaces)
             {
-<h2><a href="/Places/Details/@Places.PlaceID">@Places.PlaceName</a></h2>
+<h2><a class="link"  href="/Places/Details/@Places.PlaceID">@Places.PlaceName</a></h2>
 
             }
        
 </div>
+
+<style>
+
+    .link:hover {
+        text-shadow: #e943da 5px 5px 5px;
+        text-decoration: none;
+    }
+    .back {
+        background-color: #205295;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .back:hover {
+            text-decoration: none;
+        }
+
+    .update {
+        background-color: #FFC93C;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .update:hover {
+            text-decoration: none;
+        }
+
+    .delete {
+        background-color: #CD0404;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .delete:hover {
+            text-decoration: none;
+        }
+</style>

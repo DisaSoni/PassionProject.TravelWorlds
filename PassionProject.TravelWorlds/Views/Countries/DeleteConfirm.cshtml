@@ -6,8 +6,9 @@
 <h2>Delete Country</h2>
 
 <div style="font-size:30px; float:right;">
-    <a href="/Countries/List">Cancel</a>
+    <a class="cancel" href="/Countries/List">Cancel</a>
 </div>
+
 
 
 <h3> Are You sure want to delete country?</h3>
@@ -20,3 +21,18 @@
      <input type="submit" value="Confirm Delete" />
 
 </form>
+
+<style>
+
+    .cancel {
+        background-color: #0094ff;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .cancel:hover {
+            text-decoration: none;
+        }
+</style>

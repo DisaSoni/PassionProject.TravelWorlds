@@ -4,15 +4,37 @@
 }
 
 <div style="font-size:30px; float:right;">
-    <a href="/Places/New"> New Places </a></div>
+    <a class="plus" href="/Places/New"> New Places </a></div>
 
-    <h2 style="text-align:center; font-size:100px;">List Of Place</h2>
+    <h2 class="cont" style="text-align:center; font-size:100px;">List Of Place</h2>
 
     @foreach (var place in Model)
     {
-        <h2 style="text-align:center;"><a href="/Places/Details/@place.PlaceID">@place.PlaceName</a></h2>
+        <h2 style="text-align:center;"><a class="link" href="/Places/Details/@place.PlaceID">@place.PlaceName</a></h2>
         <h3 style="text-align:center;">@place.PlaceReviews</h3>
 
     }
 
+<style>
 
+    .link:hover {
+        text-shadow: #e943da 5px 5px 5px;
+        text-decoration: none;
+    }
+
+    .plus {
+        background-color: #0094ff;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .plus:hover {
+            text-decoration: none;
+        }
+
+    .cont {
+        font-weight: bold;
+    }
+    </style>

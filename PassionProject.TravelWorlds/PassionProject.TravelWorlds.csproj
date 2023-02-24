@@ -244,6 +244,7 @@
     <None Include="jsondata\Countries.json" />
     <Content Include="images\BGimg.jpg" />
     <Content Include="images\Tulip.jpg" />
+    <Content Include="images\Wallpepar.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

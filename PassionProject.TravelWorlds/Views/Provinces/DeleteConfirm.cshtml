@@ -6,20 +6,35 @@
 <h2>Delete Country</h2>
 
 <div style="font-size:30px; float:right;">
-    <a href="/Provinces/List">Cancel</a>
+    <a class="cancel" href="/Provinces/List">Cancel</a>
 
-    <a href="/Provinces/DeleteConfirm/@Model.ProvinceID"> Delete</a>
+    <a href="/Provinces/DeleteConfirm/@Model.ProvinceID"> </a>
 </div>
 
 
-    <h3> Are You sure want to delete country?</h3>
+<h3> Are You sure want to delete country?</h3>
 
 
-    <h1>@Model.ProvinceID @Model.ProvinceName</h1>
-    <div> @Model.CountryName</div>
+<h1>@Model.ProvinceID @Model.ProvinceName</h1>
+<div> @Model.CountryName</div>
 
-    <form action="/Provinces/Delete/@Model.ProvinceID" method="POST">
-        <input type="submit" value="Confirm Delete" />
+<form action="/Provinces/Delete/@Model.ProvinceID" method="POST">
+    <input type="submit" value="Confirm Delete" />
 
-    </form>
+</form>
 
+
+<style>
+
+    .cancel {
+        background-color: #0094ff;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .cancel:hover {
+            text-decoration: none;
+        }
+</style>

@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<div style="font-size:30px; float:right;">
+<div class="cancel" style="font-size:30px; float:right;">
     <a href="/Places/List">Cancel</a>
 </div>
 <h2>Edit Place</h2>
@@ -36,3 +36,17 @@
     </div>
 </form>
 
+<style>
+
+    .cancel {
+        background-color: #0094ff;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .cancel:hover {
+            text-decoration: none;
+        }
+</style>

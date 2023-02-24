@@ -4,23 +4,67 @@
     ViewBag.Title = "Details";
 }
 
-<h3><a href="/places/List"> Go Back to List</a></h3>
+<h3><a class="back" href="/places/List"> Go Back to List</a></h3>
 <h1> Places</h1>
+<h2 style="font-size:50px; text-align:center; padding-right:50px;">@Model.PlaceName</h2>
 <div class="active" style="float:right; font-size:30px;">
-    <a href="/places/Edit/@Model.PlaceID"> Update</a>
+    <a class="update" href="/places/Edit/@Model.PlaceID"> Update</a>
 
-    <a href="/places/DeleteConfirm/@Model.PlaceID"> Delete</a>
+    <a class="delete" href="/places/DeleteConfirm/@Model.PlaceID"> Delete</a>
  </div>
 
 
-    <h2 style="font-size:50px; text-align:center;" >@Model.PlaceName</h2>
-    <h3 style="font-size:40px; text-align:center;">Review: @Model.PlaceReviews</h3>
+    
 
-    <div>
+
+    <h3 style="font-size:20px;"><b>Review About this Place:</b></h3>
+    <h3>@Model.PlaceReviews</h3>
+
+    <div style="text-align:center">
         <h3><u>Province have a this places</u></h3>
 
-        <h2><a href="/Provinces/Details/@Model.ProvinceID">  @Model.ProvinceName </a></h2>
+        <h2><a class="link" href="/Provinces/Details/@Model.ProvinceID">  @Model.ProvinceName </a></h2>
 
     </div>
 
 
+<style>
+    .link:hover {
+        text-shadow: #e943da 5px 5px 5px;
+        text-decoration: none;
+    }
+
+    .back {
+        background-color: #205295;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+    .back:hover {
+        text-decoration: none;
+    }
+    .update {
+        background-color: #FFC93C;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .update:hover {
+            text-decoration: none;
+        }
+    .delete {
+        background-color: #CD0404;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .delete:hover {
+            text-decoration: none;
+        }
+    
+</style>
