@@ -8,8 +8,9 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
-    <div class="bgimg"></div>
+<body class="bgimg">
+    
+
         <div class="container" style="font-size:25px;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,7 +31,7 @@
             </div>
         </div>
     
-    <div class="container body-content">
+    <div class="container body-content" >
         @RenderBody()
         <hr />
         <footer>
@@ -45,7 +46,7 @@
 
      <style>
          .bgimg {
-             background: url('/images/BGimg.jpg') no-repeat center center fixed;
+             background: url('/images/Small1.jpg') no-repeat center center fixed;
              background-size: cover;
              position: absolute;
              left: 0;
@@ -53,9 +54,10 @@
              z-index: -1;
              width: 100vw;
              height: 100vh;
-             filter: blur(10px);
-             -webkit-filter: blur(10px);
-         }
+             
+         } 
+
+           
         
     </style>
 </body>
