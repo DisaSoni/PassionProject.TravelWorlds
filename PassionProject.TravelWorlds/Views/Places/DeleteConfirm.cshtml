@@ -5,19 +5,20 @@
 
 <h2>DeleteConfirm</h2>
 
-<a href="/Places/List">Cancel</a>
-<a href="/Places/DeleteConfirm/@Model.PlaceID"> Delete</a>
+<div style="font-size:30px; float:right;">
+    <a href="/Places/List">Cancel</a>
+    <a href="/Places/DeleteConfirm/@Model.PlaceID"> Delete</a>
+</div>
+
+    <h3> Are You sure want to delete country?</h3>
 
 
-<h3> Are You sure want to delete country?</h3>
+    <h1>@Model.PlaceID @Model.PlaceName</h1>
+    <div> @Model.PlaceReviews</div>
+    <div> @Model.ProvinceName</div>
 
 
-<h1>@Model.PlaceID @Model.PlaceName</h1>
-<div> @Model.PlaceReviews</div>
-<div> @Model.ProvinceName</div>
+    <form action="/Places/Delete/@Model.PlaceID" method="POST">
+        <input type="submit" value="Confirm Delete" />
 
-
-<form action="/Places/Delete/@Model.PlaceID" method="POST">
-    <input type="submit" value="Confirm Delete" />
-
-</form>
+    </form>

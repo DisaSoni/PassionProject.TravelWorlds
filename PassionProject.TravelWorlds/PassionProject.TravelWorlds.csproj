@@ -242,7 +242,7 @@
     <None Include="jsondata\Provinces.json" />
     <None Include="jsondata\Place.json" />
     <None Include="jsondata\Countries.json" />
-    <Content Include="images\Endless.jpg" />
+    <Content Include="images\BGimg.jpg" />
     <Content Include="images\Tulip.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -4,10 +4,10 @@
     ViewBag.Title = "List";
 }
 
-<a href="/Provinces/New">New Province</a>
-<h2>List</h2>
+<div style="font-size:30px; float:right;"><a href="/Provinces/New">New Province</a></div>
+<h2 style=" text-align:center; font-size:100px;">List Of Provinces </h2>
 @foreach (var province in Model)
 {
-    <h2><a href="/Provinces/Details/@province.ProvinceID">  @province.ProvinceName </a></h2>
-    <div> Country Name: @province.CountryName</div>
+    <h2 style="text-align:center;"><a href="/Provinces/Details/@province.ProvinceID">  @province.ProvinceName </a></h2>
+    <h3 style="text-align:center;"> Country Name: @province.CountryName</h3>
 }

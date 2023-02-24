@@ -4,6 +4,9 @@
     ViewBag.Title = "Edit";
 }
 
+<div style="font-size:30px; float:right;">
+    <a href="/Places/List">Cancel</a>
+</div>
 <h2>Edit Place</h2>
 
 <form action="/Places/Update/@Model.SelectedPlace.PlaceID" method="POST">

@@ -2,11 +2,33 @@
 @{
     ViewBag.Title = "List";
 }
-<a href="/Countries/New"> New Country </a>
-<h2>List Of Countrie</h2>
+
+<div style="font-size:30px; float:right;"><a class="plus" href="/Countries/New"> New Country </a></div>
+
+<h2 class="cont" style="text-align:center; font-size:100px;">List Of Countries</h2>
 
 @foreach (var countries in Model)
 {
-    <h2><a href="/Countries/Details/@countries.CountryID">@countries.CountryName</a></h2>
+    <h2 style="text-align:center;"><a class="link" href="/Countries/Details/@countries.CountryID">@countries.CountryName</a></h2>
 
 }
+<style>
+   
+     .link:hover {
+            text-shadow: #e943da 5px 5px 5px;
+            text-decoration: none;
+        }
+    .plus {
+        background-color: #0094ff;
+        border-radius: 5px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+    .plus:hover{
+        text-decoration: none;
+    }
+    .cont{
+        font-weight:bold;
+    }
+</style>

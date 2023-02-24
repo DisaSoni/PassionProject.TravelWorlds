@@ -4,14 +4,19 @@
 }
 
 <h2>Delete Country</h2>
-<a href="/Countries/List">Cancel</a>
+
+<div style="font-size:30px; float:right;">
+    <a href="/Countries/List">Cancel</a>
+</div>
+
 
 <h3> Are You sure want to delete country?</h3>
 
 
-<h1>@Model.CountryID @Model.CountryName</h1>
+<h1>@Model.CountryID.@Model.CountryName</h1>
+
 
 <form action="/Countries/Delete/@Model.CountryID" method="POST">
-    <input type="submit" value="Confirm Delete" />
+     <input type="submit" value="Confirm Delete" />
 
 </form>

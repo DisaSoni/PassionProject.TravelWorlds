@@ -3,23 +3,27 @@
     ViewBag.Title = "View";
 }
 
-<h1> Show Province</h1>
-<a href="/Provinces/list">Go back to list</a>
 
-<a href="/Provinces/Edit/@Model.SelectedProvinces.ProvinceID"> Update</a>
+<h3><a href="/Provinces/list">Go back to list</a></h3>
 
-<a href="/Provinces/DeleteConfirm/@Model.SelectedProvinces.ProvinceID"> Delete</a>
+<h1> Province</h1>
 
-<h2> @Model.SelectedProvinces.ProvinceName </h2>
+<div class="active" style="float:right; font-size:30px;">
+    <a href="/Provinces/Edit/@Model.SelectedProvinces.ProvinceID"> Update</a>
 
-<div>Country Name: @Model.SelectedProvinces.CountryName</div>
+    <a href="/Provinces/DeleteConfirm/@Model.SelectedProvinces.ProvinceID"> Delete</a>
+</div>
+
+<h1 style="font-size:50px; text-align:center" > @Model.SelectedProvinces.ProvinceName </h1>
+
+<h3>Country Name: @Model.SelectedProvinces.CountryName</h3>
 
 
 <div>
-    <h3> Places in this Province</h3>
+    <h2><u> Places in this Province</u></h2>
     @foreach (var Places in Model.RealatedPlaces)
             {
-                <a href="/Places/Details/@Places.PlaceID">@Places.PlaceName</a>
+<h2><a href="/Places/Details/@Places.PlaceID">@Places.PlaceName</a></h2>
 
             }
        

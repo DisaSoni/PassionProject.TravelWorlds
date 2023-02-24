@@ -4,7 +4,12 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update Country</h2>
+
+<div style="font-size:30px; float:right;">
+    <a href="/Countries/List">Cancel</a>
+</div>
+
+<h2>Edit Country</h2>
 
 <form action="/Countries/Update/@Model.CountryID" method="POST">
     <div>
@@ -14,7 +19,7 @@
         <label> Country Name:</label> <input type="text" name="CountryName" value="@Model.CountryName" />
     </div>
     <div>
-        <input type="submit" value="Update Country" />
+        <input type="submit" value="Edit Country" />
     </div>
 </form>
 

@@ -4,22 +4,23 @@
     ViewBag.Title = "Details";
 }
 
-<a href="/places/List"> Go Back to List</a>
+<h3><a href="/places/List"> Go Back to List</a></h3>
+<h1> Places</h1>
+<div class="active" style="float:right; font-size:30px;">
+    <a href="/places/Edit/@Model.PlaceID"> Update</a>
 
-<a href="/places/Edit/@Model.PlaceID"> Update</a>
+    <a href="/places/DeleteConfirm/@Model.PlaceID"> Delete</a>
+ </div>
 
-<a href="/places/DeleteConfirm/@Model.PlaceID"> Delete</a>
 
-<h2>Show Places</h2>
+    <h2 style="font-size:50px; text-align:center;" >@Model.PlaceName</h2>
+    <h3 style="font-size:40px; text-align:center;">Review: @Model.PlaceReviews</h3>
 
-<h2>@Model.PlaceName</h2>
-<h3>Review: @Model.PlaceReviews</h3>
+    <div>
+        <h3><u>Province have a this places</u></h3>
 
-<div>
-    <h3> Province </h3>
+        <h2><a href="/Provinces/Details/@Model.ProvinceID">  @Model.ProvinceName </a></h2>
 
-    <h2><a href="/Provinces/Details/@Model.ProvinceID">  @Model.ProvinceName </a></h2>
-
-</div>
+    </div>
 
 

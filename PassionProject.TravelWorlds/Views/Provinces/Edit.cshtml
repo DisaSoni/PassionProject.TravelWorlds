@@ -3,24 +3,29 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit province</h2>
+<div style="font-size:30px; float:right;">
+    <a href="/Provinces/List">Cancel</a>
+</div>
 
-<form action="/Provinces/Update/@Model.SelectedProvinces.ProvinceID" method="POST">
-    <div>
-        <label>Province Id:</label> <input type="text" name="ProvinceId" value="@Model.SelectedProvinces.ProvinceID" />
-    </div>
-    <div>
-        <label>Province Name:</label> <input type="text" name="ProvinceName" Value="@Model.SelectedProvinces.ProvinceName" />
-    </div>
-    <div>
-        <label>Country</label>
-        <select name="CountryID">
-            @foreach (var countries in Model.CountriesOptions)
-            {
-                <option value="@countries.CountryID"> @countries.CountryName </option>
-            }
-        </select>
+
+    <h2>Edit province</h2>
+
+    <form action="/Provinces/Update/@Model.SelectedProvinces.ProvinceID" method="POST">
         <div>
-            <input type="submit" value="Edit Province" />
+            <label>Province Id:</label> <input type="text" name="ProvinceId" value="@Model.SelectedProvinces.ProvinceID" />
         </div>
-</form>
+        <div>
+            <label>Province Name:</label> <input type="text" name="ProvinceName" Value="@Model.SelectedProvinces.ProvinceName" />
+        </div>
+        <div>
+            <label>Country</label>
+            <select name="CountryID">
+                @foreach (var countries in Model.CountriesOptions)
+                {
+                    <option value="@countries.CountryID"> @countries.CountryName </option>
+                }
+            </select>
+            <div>
+                <input type="submit" value="Edit Province" />
+            </div>
+    </form>

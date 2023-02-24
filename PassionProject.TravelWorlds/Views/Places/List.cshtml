@@ -3,14 +3,16 @@
     ViewBag.Title = "List";
 }
 
-<a href="/Places/New"> New Places </a>
-<h2>List Of Place</h2>
+<div style="font-size:30px; float:right;">
+    <a href="/Places/New"> New Places </a></div>
 
-@foreach (var place in Model)
-{
-    <h2><a href="/Places/Details/@place.PlaceID">@place.PlaceName</a></h2>
-    <p>@place.PlaceReviews</p>
-    
-}
+    <h2 style="text-align:center; font-size:100px;">List Of Place</h2>
+
+    @foreach (var place in Model)
+    {
+        <h2 style="text-align:center;"><a href="/Places/Details/@place.PlaceID">@place.PlaceName</a></h2>
+        <h3 style="text-align:center;">@place.PlaceReviews</h3>
+
+    }
 
 

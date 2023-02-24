@@ -5,25 +5,30 @@
 }
 
 
-<a href="/Countries/List"> Go Back to List</a>
 
-<a href="/Countries/Edit/@Model.SelectedCountries.CountryID"> Update</a>
+<h3><a href="/Countries/List"> Go Back to List</a></h3>
+<h1 style="text-align:center;">Country</h1>
 
-<a href="/Countries/DeleteConfirm/@Model.SelectedCountries.CountryID"> Delete</a>
+<div class="active" style="float:right; font-size:30px;">
+    <a href="/Countries/Edit/@Model.SelectedCountries.CountryID">Update</a>
+     <a href="/Countries/DeleteConfirm/@Model.SelectedCountries.CountryID"> Delete</a>
+</div>
 
-<h2>Detail</h2>
 
-<h2>@Model.SelectedCountries.CountryID @Model.SelectedCountries.CountryName</h2>
 
-<h3> Province Related to this Country</h3>
+<h1 style="font-size:50px; text-align:center">@Model.SelectedCountries.CountryID. @Model.SelectedCountries.CountryName</h1>
+
+
+
+<h3> <u>Province about to this Country</u></h3>
 
 <div>
-    
-@foreach(var province in Model.RelatedProvince)
-            {
-     
-            <a href="/Provinces/Details/@province.ProvinceID">@province.ProvinceName</a>
-       
-            }
-     
+
+    @foreach (var province in Model.RelatedProvince)
+    {
+
+        <h2><a href="/Provinces/Details/@province.ProvinceID">@province.ProvinceName</a></h2>
+
+    }
+
 </div>
