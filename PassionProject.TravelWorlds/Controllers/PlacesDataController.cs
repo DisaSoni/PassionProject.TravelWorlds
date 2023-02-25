@@ -20,7 +20,7 @@ namespace PassionProject.TravelWorlds.Controllers
         /// <summary>
         /// Gather Information 
         /// </summary>
-        /// <param name="id"> Province ID</param>
+        /// <param name="id"> Place ID</param>
         /// <returns> all Places</returns>
         // GET: api/PlacesData/ListPlaces
         //curl https://localhost:44309/api/PlacesData/ListPlaces
@@ -47,7 +47,7 @@ namespace PassionProject.TravelWorlds.Controllers
         /// <summary>
         /// Gather Information 
         /// </summary>
-        /// <param name="id"> Province ID</param>
+        /// <param name="id"> Place ID</param>
         /// <returns>Return all List</returns>
 
         // GET: api/PlacesData/ListPlacesForProvinces/3
@@ -76,7 +76,7 @@ namespace PassionProject.TravelWorlds.Controllers
         /// <summary>
         /// Return places in system
         /// </summary>
-        /// <param name="id"> Province ID</param>
+        /// <param name="id"> Place ID</param>
         /// <returns> ALl places in system matching up to province </returns>
 
         // GET: api/PlacesData/FindPlace/5
@@ -107,7 +107,7 @@ namespace PassionProject.TravelWorlds.Controllers
         /// <summary>
         /// Update Information 
         /// </summary>
-        /// <param name="id"> Province ID</param>
+        /// <param name="id"> Place ID</param>
        
         // POST: api/PlacesData/UpdatePlace/5
         //curl -d @place.json -H "Content-type:application/json" https://localhost:44309/api/PlacesData/UpdatePlace/8
