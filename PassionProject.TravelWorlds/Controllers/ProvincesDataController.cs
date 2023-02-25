@@ -18,6 +18,14 @@ namespace PassionProject.TravelWorlds.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Returns all province in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all province in the database.
+        /// </returns>
+
         // GET: api/ProvincesData/ListProvinces
         // curl https://localhost:44309/api/ProvincesData/ListProvinces
         [HttpGet]
@@ -37,8 +45,16 @@ namespace PassionProject.TravelWorlds.Controllers
             return ProvinceDtos;
         }
 
+
+        /// <summary>
+        /// Gathers information about all province related to a particular species ID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all province in the database
+        /// </returns>
         // GET: api/ProvincesData/ListProvincesForCountries/3
-       
+
         [HttpGet]
         public IEnumerable<ProvinceDto> ListProvincesForCountries(int id)
         {
@@ -56,6 +72,17 @@ namespace PassionProject.TravelWorlds.Controllers
 
             return ProvinceDtos;
         }
+
+        /// <summary>
+        /// Returns all province in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: An province in the system matching up to the province ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the province</param>
 
         // GET: api/ProvincesData/FindProvince/5
         //curl “https://localhost:44309/api/ProvincesData/FindProvince/8”
@@ -79,6 +106,12 @@ namespace PassionProject.TravelWorlds.Controllers
 
             return Ok(ProvinceDto);
         }
+
+        /// <summary>
+        /// Updates a particular province in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the province ID primary key</param>
+      
 
         // POST: api/ProvincesData/UpdateProvince/5
         // curl -d @provinces.json -H "Content-type:application/json" https://localhost:44309/api/ProvincesData/UpdateProvince/8  
@@ -124,6 +157,11 @@ namespace PassionProject.TravelWorlds.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Adds an province to the system
+        /// </summary>
+       
+
         // POST: api/ProvincesData/AddProvince
         //curl -d @province.json -H “Content-type:application/json” https://localhost:44309/api/ProvincesData/AddProvince
         [ResponseType(typeof(Province))]
@@ -141,6 +179,11 @@ namespace PassionProject.TravelWorlds.Controllers
             return CreatedAtRoute("DefaultApi", new { id = province.ProvinceID }, province);
         }
 
+        /// <summary>
+        /// Deletes an province from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the province</param>
+        
         // DELETE: api/ProvincesData/DeleteProvince/5
         //curl -d "" https://localhost:44309/api/ProvincesData/DeleteProvince/{id}
         [ResponseType(typeof(Province))]

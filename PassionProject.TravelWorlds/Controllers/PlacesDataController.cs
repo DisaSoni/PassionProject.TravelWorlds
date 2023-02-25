@@ -16,6 +16,12 @@ namespace PassionProject.TravelWorlds.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+        /// <summary>
+        /// Gather Information 
+        /// </summary>
+        /// <param name="id"> Province ID</param>
+        /// <returns> all Places</returns>
         // GET: api/PlacesData/ListPlaces
         //curl https://localhost:44309/api/PlacesData/ListPlaces
         [HttpGet]
@@ -42,7 +48,7 @@ namespace PassionProject.TravelWorlds.Controllers
         /// Gather Information 
         /// </summary>
         /// <param name="id"> Province ID</param>
-        /// <returns></returns>
+        /// <returns>Return all List</returns>
 
         // GET: api/PlacesData/ListPlacesForProvinces/3
         //curl https://localhost:44309/api/PlacesData/ListPlacesForProvinces
@@ -67,6 +73,11 @@ namespace PassionProject.TravelWorlds.Controllers
             return PlaceDtos;
         }
 
+        /// <summary>
+        /// Return places in system
+        /// </summary>
+        /// <param name="id"> Province ID</param>
+        /// <returns> ALl places in system matching up to province </returns>
 
         // GET: api/PlacesData/FindPlace/5
         //curl "https://localhost:44309/api/PlacesData/FindPlace/8"
@@ -93,6 +104,11 @@ namespace PassionProject.TravelWorlds.Controllers
             return Ok(PlaceDto);
         }
 
+        /// <summary>
+        /// Update Information 
+        /// </summary>
+        /// <param name="id"> Province ID</param>
+       
         // POST: api/PlacesData/UpdatePlace/5
         //curl -d @place.json -H "Content-type:application/json" https://localhost:44309/api/PlacesData/UpdatePlace/8
 
@@ -131,6 +147,11 @@ namespace PassionProject.TravelWorlds.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// ADD animals in system
+        /// </summary>
+        /// <param name="id"> json data from the system</param>
+      
         // POST: api/PlacesData/AddPlace
         //curl -d @place.json -H "Content-type:application/json" https://localhost:44309/api/PlacesData/addplace
 
@@ -149,6 +170,12 @@ namespace PassionProject.TravelWorlds.Controllers
             return CreatedAtRoute("DefaultApi", new { id = place.PlaceID }, place);
         }
 
+
+        /// <summary>
+        /// Deletes an place from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the place</param>
+        
         // DELETE: api/PlacesData/DeletePlace/5
         //curl -d "" https://localhost:44309/api/PlacesData/deletePlace/9
         [ResponseType(typeof(Place))]

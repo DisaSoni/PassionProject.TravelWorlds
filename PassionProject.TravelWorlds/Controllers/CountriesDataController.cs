@@ -16,6 +16,15 @@ namespace PassionProject.TravelWorlds.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+        /// <summary>
+        /// Returns all Country in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all country in the database
+        /// </returns>
+        
         // GET: api/CountriesData/ListCountries
         //curl https://localhost:44309/api/CountriesData/ListCountries
         [HttpGet]
@@ -35,6 +44,15 @@ namespace PassionProject.TravelWorlds.Controllers
             return db.Countries;
         }
 
+
+        /// <summary>
+        /// Return all country in system
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all country in the database, 
+        /// </returns>
+        /// <param name="id">Country ID.</param>
         // GET: api/CountriesData/FindCountries/5
         // curl "https://localhost:44309/api/CountriesData/FindCountries/11"
         [HttpGet]
@@ -55,6 +73,13 @@ namespace PassionProject.TravelWorlds.Controllers
 
             return Ok(CountriesDto);
         }
+
+
+        /// <summary>
+        /// Updates a particular country in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents thecountry primary key</param>
+      
 
         // POST: api/CountriesData/UpdateCountries/5
         //curl -d @countries.json -H "Content-type:application/json" https://localhost:44309/api/CountriesData/UpdateCountries/11
@@ -93,9 +118,14 @@ namespace PassionProject.TravelWorlds.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // <summary>
+        /// Adds an country to the system
+        /// </summary>
+        /// <param name="country">JSON FORM DATA of an country</param>
+
         // POST: api/CountriesData/AddCountries
         //curl -d @countries.json -H "Content-type:application/json" https://localhost:44309/api/CountriesData/AddCountries
-                [ResponseType(typeof(Countries))]
+        [ResponseType(typeof(Countries))]
         [HttpPost]
         public IHttpActionResult AddCountries(Countries countries)
         {
@@ -110,6 +140,12 @@ namespace PassionProject.TravelWorlds.Controllers
             return CreatedAtRoute("DefaultApi", new { id = countries.CountryID }, countries);
         }
 
+
+        /// <summary>
+        /// Deletes an country from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the country</param>
+        
         // POST: api/CountriesData/DeleteCountries/5
         //curl -d "" https://localhost:44309/api/CountriesData/DeleteCountries/12
         [ResponseType(typeof(Countries))]
