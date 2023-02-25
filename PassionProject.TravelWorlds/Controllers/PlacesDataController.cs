@@ -148,7 +148,7 @@ namespace PassionProject.TravelWorlds.Controllers
         }
 
         /// <summary>
-        /// ADD animals in system
+        /// ADD places in system
         /// </summary>
         /// <param name="id"> json data from the system</param>
       
