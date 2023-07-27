@@ -4,6 +4,7 @@
 TravelWords is a feature-rich web application built using C#.NET WebAPI, Entity Framework, and HTML/CSS that empowers users to explore and review travel destinations worldwide. The application efficiently manages Destination records, including Countries, Provinces, and allows for valuable Feedback Reviews by tourists.
 
 <h3>Key Features:</h3>
+
 1. CRUD Operations with Entity Framework: TravelWords utilizes Entity Framework to create and manage Destination records, enabling efficient data handling for Countries, Provinces, and Feedback Reviews. The application seamlessly handles database operations, ensuring smooth user interactions.
 
 2. Database Creation with Code-First Migrations: The application employs code-first migrations to establish the database, streamlining the development process and ensuring database schema evolution as the application evolves.
